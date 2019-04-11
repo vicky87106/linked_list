@@ -10,8 +10,8 @@ typedef struct node {
 	struct node *next;
 }node, *pnode;
 void mattolin(pnode &l,  int r, int c);        /*matric to linked list*/
-//void printmatric(const pnode &l, int r, int c);    /*print the result matric*/
-
+void printmatric(const pnode &l, int r, int c);    /*print the result matric*/
+void destroyList(pnode &l);
 
 int main()
 {
@@ -25,14 +25,13 @@ int main()
 
 	cin >> row1 >> col1;  //弄秈rowcol
 	pnode l1 = NULL, l2 = NULL, l3 = NULL;
-	for (int j = 0; j < col1*row1; j++) //弄秈场痻皚
-	{
 		mattolin(l1, row1, col1);
 		
-	}
-	//printmatric(l1, row1, col1);   /*print the result matric*/
+
+	printmatric(l1, row1, col1);   /*print the result matric*/
 	
 	system("pause");
+	destroyList(l1);
 	return 0;
 
 }
@@ -79,26 +78,7 @@ void mattolin(pnode &l, int r, int c)        /*matric to linked list*/
 		system("pause");
 		exit(0);
 	}
-	//int i, j;
-	//pnode p;
-	pnode p1 = l->next; //程竊翴
-	for (int i = 0;i < r;i++)
-	{
-		for (int j = 0;j < c;j++)
-		{
-			if (p1 != NULL) //p1ぃ杠
-			{
-				if (p1->row == i && p1->column == j)
-				{
-					cout << p1->data << ' ';
-					p1 = p1->next;
-					continue;
-				}
-			}
-			cout << "0" << ' ';
-		}
-		cout << endl;  //﹚col计传︽
-	}
+	
 }
 
 /*void Add2mat(const pnode &l1, const pnode &l2, pnode &l3)*/  /*add the two matrices to linked list 3*/
@@ -182,22 +162,20 @@ void mattolin(pnode &l, int r, int c)        /*matric to linked list*/
 	}
 }*/
 
-//void printmatric(const pnode &l, int r, int c)    /*print the result matric*/
-//{
-//	if (l == NULL) //狦Linked list琌
-/*	{
+void printmatric(const pnode &l, int r, int c)    /*print the result matric*/
+{
+	if (l == NULL)
+	{
 		cout << "Linked list is NULL" << endl;
-		system("pause");
 		exit(0);
 	}
-	int i, j;
-	pnode p;*/
-	/*p = l->next; *///程竊翴
-	/*for (i = 0;i < r;i++)
+	pnode p;
+	p = l->next;
+	for (int i = 0;i < r;i++)
 	{
-		for (j = 0;j < c;j++)
+		for (int j = 0;j < c;j++)
 		{
-			if (p != NULL)
+			if (p != NULL) //p1ぃ杠
 			{
 				if (p->row == i && p->column == j)
 				{
@@ -206,13 +184,13 @@ void mattolin(pnode &l, int r, int c)        /*matric to linked list*/
 					continue;
 				}
 			}
-			cout << "0.0" << ' ';
+			cout << "0" << ' ';
 		}
-		cout << endl;
+		cout << endl;  //﹚col计传︽
 	}
-}*/
+}
 
-/*void destroyList(pnode &l)
+void destroyList(pnode &l)
 {
 	if (l == NULL)
 		return;
@@ -224,7 +202,7 @@ void mattolin(pnode &l, int r, int c)        /*matric to linked list*/
 		p = l->next;
 	}
 	delete l;
-}*/
+}
 /*
 void main()
 {
