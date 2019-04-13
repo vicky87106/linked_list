@@ -1,13 +1,13 @@
-// link_list.cpp : ©w¸q¥D±±¥xÀ³¥Îµ{¦¡ªº¶i¤JÂI¡C
-//
+// link_list.cpp : å®šç¾©ä¸»æ§å°æ‡‰ç”¨ç¨‹å¼çš„é€²å…¥é»ã€‚
+// ä¸è«–è¼¸å…¥ç”šéº¼ï¼Œéƒ½åªæœƒå°å‡º0
 #include "stdafx.h" 
 #include <iostream>
 using namespace std;
-typedef struct node { //¸`ÂI structure
-	unsigned int row;  //¦srow
-	unsigned int column; //¦scolumn
-	double data; //¦s¸Ó¯x°}ªº­È
-	struct node *next; //¦s¤U¤@­Ó¸`ÂIªº¦ì¸m
+typedef struct node { //ç¯€é» structure
+	unsigned int row;  //å­˜row
+	unsigned int column; //å­˜column
+	double data; //å­˜è©²çŸ©é™£çš„å€¼
+	struct node *next; //å­˜ä¸‹ä¸€å€‹ç¯€é»çš„ä½ç½®
 }node, *pnode;
 void mattolin(pnode &l,  int r, int c);        /*matric to linked list*/
 void printmatric(const pnode &l, int r, int c);    /*print the result matric*/
@@ -20,12 +20,12 @@ int main()
 {
 	int row1, col1, row2, col2;
 
-	cin >> row1 >> col1;  //Åª¶irow¡Bcol
-	pnode l1 = NULL, l2 = NULL, l3 = NULL; //¤@¶}©l¸`ÂI¬OªÅªº
-		mattolin(l1, row1, col1); //«Ø¥ßl1¯x°}
-		cin >> row2 >> col2;  //Åª¶irow¡Bcol
-		mattolin(l2, row2, col2); //«Ø¥ßl2 ¯x°}
-		if (col1 != row2) //·í¯x°}µLªk¬Û­¼®É¡A´N¤£¥Î­pºâ
+	cin >> row1 >> col1;  //è®€é€²rowã€col
+	pnode l1 = NULL, l2 = NULL, l3 = NULL; //ä¸€é–‹å§‹ç¯€é»æ˜¯ç©ºçš„
+		mattolin(l1, row1, col1); //å»ºç«‹l1çŸ©é™£
+		cin >> row2 >> col2;  //è®€é€²rowã€col
+		mattolin(l2, row2, col2); //å»ºç«‹l2 çŸ©é™£
+		if (col1 != row2) //ç•¶çŸ©é™£ç„¡æ³•ç›¸ä¹˜æ™‚ï¼Œå°±ä¸ç”¨è¨ˆç®—
 		{
 			cout << "The matrix is not match.";
 		}
@@ -39,8 +39,8 @@ int main()
 			printmatric(l3, row1, col2);  /*print the result matric*/
 		}  
 	
-	system("pause");  //Åıµ{¦¡¼È°±
-	destroyList(l1); //²M°£Linked list
+	system("pause");  //è®“ç¨‹å¼æš«åœ
+	destroyList(l1); //æ¸…é™¤Linked list
 	destroyList(l2);
 	destroyList(l3);
 	return 0;
@@ -50,35 +50,35 @@ int main()
 
 void mattolin(pnode &l, int r, int c)        /*matric to linked list*/
 {
-	/*if (l != NULL)  //·ílinked list¤£¬OªÅªº®É­Ô
+	/*if (l != NULL)  //ç•¶linked listä¸æ˜¯ç©ºçš„æ™‚å€™
 	{
 		cout << "Linked list is not NULL" << endl;
 		system("pause");
 		exit(0);
 	}*/
-	pnode p; //¥O¤@­Ó¸`ÂI¡A¥Ã»·«ü¦V³Ì«á¤@­Ó
+	pnode p; //ä»¤ä¸€å€‹ç¯€é»ï¼Œæ°¸é æŒ‡å‘æœ€å¾Œä¸€å€‹
 	
-	l = new node; //²£¥Í¤@­Ó·s¸`ÂI ³o­Ól  ???
-	l->next = NULL; //³Ì«á¤@­Ó«ü¦VNull
-	p = l; //§âpªº­Èassignµ¹null
-	int value; //¦sÅª¶i¨Óªº­È
+	l = new node; //ç”¢ç”Ÿä¸€å€‹æ–°ç¯€é» é€™å€‹l  ???
+	l->next = NULL; //æœ€å¾Œä¸€å€‹æŒ‡å‘Null
+	p = l; //æŠŠpçš„å€¼assignçµ¦null
+	int value; //å­˜è®€é€²ä¾†çš„å€¼
 	for (int i = 0;i < r; i++)
 	{
 		for (int j = 0;j < c; j++)
 		{
-			cin >> value; //cin­Ó¼Æ´N¬Orow*col
-			if (value!= 0) //¦pªG¤£¬O0ªº¸Ü¡A²£¥Í¤@­Ó·s¸`ÂI¡C¥Hrow-major±Æªk
+			cin >> value; //cinå€‹æ•¸å°±æ˜¯row*col
+			if (value!= 0) //å¦‚æœä¸æ˜¯0çš„è©±ï¼Œç”¢ç”Ÿä¸€å€‹æ–°ç¯€é»ã€‚ä»¥row-majoræ’æ³•
 			{
-				p->next = new node;  //²£¥Í¤@­Ó·s¸`ÂI
-				p->next->row = i; //§ârowªº­È¦s¶i¥h
-				p->next->column = j; //§âcolªº­È¦s¶i¥h
-				p->next->data = value; //¦sdata
-				p->next->next = NULL;  //³Ì«á¤@­Ó«ü¦Vnull
-				p = p->next; //ÅıpÅÜ³Ì«á¤@­Ó
+				p->next = new node;  //ç”¢ç”Ÿä¸€å€‹æ–°ç¯€é»
+				p->next->row = i; //æŠŠrowçš„å€¼å­˜é€²å»
+				p->next->column = j; //æŠŠcolçš„å€¼å­˜é€²å»
+				p->next->data = value; //å­˜data
+				p->next->next = NULL;  //æœ€å¾Œä¸€å€‹æŒ‡å‘null
+				p = p->next; //è®“pè®Šæœ€å¾Œä¸€å€‹
 			}
 		}
 	}
-	if (l == NULL) //¦pªGLinked list¬OªÅªº
+	if (l == NULL) //å¦‚æœLinked listæ˜¯ç©ºçš„
 	{
 		cout << "Linked list is NULL" << endl;
 		system("pause");
@@ -124,15 +124,15 @@ void Add(pnode &x, int row, int column, int value) {
 void Insert(pnode &x, int row, int column, int value)
 {
 	pnode l;
-	l = new node; //²£¥Í¤@­Ó·s¸`ÂI
-	l->next = NULL; //³Ì«á¤@­Ó«ü¦VNull
+	l = new node; //ç”¢ç”Ÿä¸€å€‹æ–°ç¯€é»
+	l->next = NULL; //æœ€å¾Œä¸€å€‹æŒ‡å‘Null
 	x = l;
-	x->next = new node;  //²£¥Í¤@­Ó·s¸`ÂI
-	x->next->row = row; //§ârowªº­È¦s¶i¥h
-	x->next->column = column; //§âcolªº­È¦s¶i¥h
-	x->next->data = value; //¦sdata
-	x->next->next = NULL;  //³Ì«á¤@­Ó«ü¦Vnull
-	x = x->next; //ÅıpÅÜ³Ì«á¤@­Ó
+	x->next = new node;  //ç”¢ç”Ÿä¸€å€‹æ–°ç¯€é»
+	x->next->row = row; //æŠŠrowçš„å€¼å­˜é€²å»
+	x->next->column = column; //æŠŠcolçš„å€¼å­˜é€²å»
+	x->next->data = value; //å­˜data
+	x->next->next = NULL;  //æœ€å¾Œä¸€å€‹æŒ‡å‘null
+	x = x->next; //è®“pè®Šæœ€å¾Œä¸€å€‹
 }
 //void Multiplemat(const pnode &l1, const pnode &l2, pnode &l3, int r, int c)  /*add the two matrices to linked list 3*/
 /*{
@@ -142,9 +142,9 @@ void Insert(pnode &x, int row, int column, int value)
 		exit(0);
 	 }
 	pnode p, q, t;*/
-	//l3 = new node;  //¥Î¨Ó¦s¬Û­¼ªºlinked list
+	//l3 = new node;  //ç”¨ä¾†å­˜ç›¸ä¹˜çš„linked list
 	//l3->next = NULL; 
-	//t = l3; //«ü¦Vl3 linked listªº³Ì«á¤@­Ó
+	//t = l3; //æŒ‡å‘l3 linked listçš„æœ€å¾Œä¸€å€‹
 	//p = l1->next;
 	//q = l2->next;
    /*while (p != NULL)
@@ -166,14 +166,14 @@ void Insert(pnode &x, int row, int column, int value)
 						q = q->next;
 					}
 					pnode q;
-					q = l2->next; //q¦^¨ì­ìÂI
+					q = l2->next; //qå›åˆ°åŸé»
 
-					t->next = new node;  //²£¥Í¤@­Ó·s¸`ÂI
-					t->next->row = i; //§ârowªº­È¦s¶i¥h
-					t->next->column = j; //§âcolªº­È¦s¶i¥h
-					t->next->data = save; //¦sdata
-					t->next->next = NULL;  //³Ì«á¤@­Ó«ü¦Vnull
-					t = t->next; //ÅıpÅÜ³Ì«á¤@­Ó
+					t->next = new node;  //ç”¢ç”Ÿä¸€å€‹æ–°ç¯€é»
+					t->next->row = i; //æŠŠrowçš„å€¼å­˜é€²å»
+					t->next->column = j; //æŠŠcolçš„å€¼å­˜é€²å»
+					t->next->data = save; //å­˜data
+					t->next->next = NULL;  //æœ€å¾Œä¸€å€‹æŒ‡å‘null
+					t = t->next; //è®“pè®Šæœ€å¾Œä¸€å€‹
 					p = p->next;
 				}
 		}
@@ -185,7 +185,7 @@ void Insert(pnode &x, int row, int column, int value)
 
 void printmatric(const pnode &l, int r, int c)    /*print the result matric*/
 {
-	if (l == NULL)  //·í¬OªÅªº¡A´N¤£¦L¤F
+	if (l == NULL)  //ç•¶æ˜¯ç©ºçš„ï¼Œå°±ä¸å°äº†
 	{
 		cout << "Linked list is NULL" << endl;
 		exit(0);
@@ -196,7 +196,7 @@ void printmatric(const pnode &l, int r, int c)    /*print the result matric*/
 	{
 		for (int j = 0;j < c;j++)
 		{
-			if (p != NULL) //p1¤£¬°ªÅªº¸Ü
+			if (p != NULL) //p1ä¸ç‚ºç©ºçš„è©±
 			{
 				if (p->row == i && p->column == j)
 				{
@@ -207,7 +207,7 @@ void printmatric(const pnode &l, int r, int c)    /*print the result matric*/
 			}
 			cout << "0" << ' ';
 		}
-		cout << endl;  //¨ì¤@©wªºcol¼Æ´«¦æ
+		cout << endl;  //åˆ°ä¸€å®šçš„colæ•¸æ›è¡Œ
 	}
 }
 
